@@ -1,4 +1,8 @@
 HOURS_DET: list[str] = [
     "as",
-    "o"
+    "o", 
+    "qual", 
+    "quais",
+    "a",
+    "os"
 ]

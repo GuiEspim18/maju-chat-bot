@@ -2,6 +2,7 @@ from typing import *
 from maju_thinking import MajuThinking
 import datetime
 from utils.hours.statements.statements import HOURS_STATEMENTS
+from utils.hours.hours_principal_noun import HOURS_PRINCIPAL_NOUN
 
 class MajuSkills:
 
@@ -14,7 +15,7 @@ class MajuSkills:
     # Processing the command
     def process_command(self) -> bool:
         value: str = self.command
-        if "horas" in value or "horário" in value:
+        if self.__check_hour(value):
             RESULT: bool = self.maju_thinking.hours(self.command)
             if RESULT:
                 CURRENT_HOURS: str = datetime.datetime.now().strftime('%H:%M')
@@ -22,3 +23,9 @@ class MajuSkills:
                 return True
             else:
                 return False
+            
+    def __check_hour(self, value: str) -> bool:
+        for i in HOURS_PRINCIPAL_NOUN:
+            if i in value: 
+                return True
+        return False

@@ -19,7 +19,7 @@ class Maju:
 
     # Start scripts
     def __start(self) -> None:
-        QUEST: str = self.input()
+        QUEST: str = self.__input()
         self.process(QUEST)
 
     def __input(self) -> str:

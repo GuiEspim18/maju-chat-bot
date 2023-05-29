@@ -5,5 +5,6 @@ HOURS_NOUN: list[str] = [
     "curiosa",
     "desejo",
     "relógio",
-    "horário"
+    "horário",
+    "hora"
 ]

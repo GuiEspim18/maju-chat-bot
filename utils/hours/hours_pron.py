@@ -1,4 +1,6 @@
 HOURS_PRON: list[str] = [
     "me",
-    "você"
+    "você",
+    "qual", 
+    "quais"
 ]
