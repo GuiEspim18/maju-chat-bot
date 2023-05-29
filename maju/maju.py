@@ -1,4 +1,4 @@
-from maju_skills import MajuSkills
+from maju.maju_skills import MajuSkills
 from utils.erros.statements.statements import ERROS_STATEMENTS
 from utils.goodbye.statements.statements import GOOD_BYE_STATEMENTS
 import random
@@ -22,9 +22,11 @@ class Maju:
         QUEST: str = self.__input()
         self.process(QUEST)
 
+    # Setting the default imput
     def __input(self) -> str:
         return input("-> ").lower()
     
+    # Process the information
     def process(self, value: str) -> None:
         try:
             while "tchau" not in value:
@@ -42,10 +44,7 @@ class Maju:
             print(err)
             self.__start()
 
+    # Displays a goodbye message
     def goodbye(self) -> None:
         GOOD_BYE: str = random.choice(GOOD_BYE_STATEMENTS)
         print(GOOD_BYE)
-
-    
-
-Maju()
