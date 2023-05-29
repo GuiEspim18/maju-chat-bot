@@ -73,5 +73,5 @@ class MajuSkills:
     # Getting the current location
     def __get_current_location(self)-> str:
         LOCATION: Any = geocoder.ip('me')
-        return LOCATION
+        return LOCATION.city
 
