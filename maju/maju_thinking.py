@@ -1,5 +1,4 @@
 import spacy
-from spacy import Language
 
 from utils.hours.hours_adj import HOURS_ADJ
 from utils.hours.hours_adp import HOURS_ADP
@@ -24,6 +23,10 @@ from utils.temperature.temp_verb import TEMP_VERB
 from utils.temperature.type.temp_types import TEMP_TYPES
 
 from utils.punct import PUNCT
+
+# types
+from spacy import Language
+from typing import *
 
 class MajuThinking:
 
@@ -72,15 +75,29 @@ class MajuThinking:
     # Identificationg if the statement makes sense in temperature skill
     def temperature(self, command: str) -> bool:
         nlp: Language = spacy.load("pt_core_news_sm")
-        doc = nlp(command)
+        doc: spacy.tokens.doc.Doc = nlp(command)
         neural: list[bool] = []
         for token in doc:
             if str(token) not in self.PUNCT and str(token).lower() != "maju": 
                 neural.append(self.__temp_nlp(str(token.pos_), str(token)))
+        self.__correct_statement(doc, neural)
         if False in neural: 
             return False
         else:
             return True
+        
+    def __correct_statement(self, value: spacy.tokens.doc.Doc, neural: list[bool]) -> None:
+        statement: str = ""
+        cond: list = []
+        if neural[-1] == False: 
+            del(neural[-1])
+            statement = str(value).replace(str(value[-1]), "")
+            cond.append(True)
+        if neural[0] == False: 
+            del(neural[0])
+            statement = str(value).replace(str(value[0]), "")
+            cond.append(True)
+        if True in cond: print(f"Você quis dizer: {statement[1:]}?")
 
     def __temp_nlp(self, pos, token) -> bool:
         ALL_WORDS: dict[str, list[str]] = {
