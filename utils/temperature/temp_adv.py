@@ -3,5 +3,6 @@ TEMP_ADV: list[str] = [
     "atualmente",
     "local",
     "atual",
-    "aqui"
+    "aqui",
+    "hoje"
 ]

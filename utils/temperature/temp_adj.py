@@ -2,5 +2,8 @@ TEMP_ADJ: list[str] = [
     "exatas",
     "atual",
     "atuais",
-    "local"
+    "local",
+    "clima",
+    "temperatura",
+    "tempo"
 ]

@@ -11,4 +11,8 @@ TEMP_VERB: list[str] = [
     "poderia",
     "dizer",
     "marca",
+    "fazendo",
+    "clima",
+    "temperatura",
+    "tempo"
 ]

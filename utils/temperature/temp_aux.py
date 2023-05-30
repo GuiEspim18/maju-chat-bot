@@ -1,5 +1,9 @@
 TEMP_AUX: list[str] = [
     "são",
     "estou",
-    "é"
+    "é",
+    "está",
+    "tá",
+    "to",
+    "tô"
 ]

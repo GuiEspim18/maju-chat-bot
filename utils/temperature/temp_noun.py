@@ -8,5 +8,6 @@ TEMP_NOUN: list[str] = [
     "clima",
     "graus",
     "tempo",
-    "cidade"
+    "cidade",
+    "localidade"
 ]
