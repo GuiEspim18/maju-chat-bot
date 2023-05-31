@@ -136,9 +136,10 @@ class MajuThinking:
             return False
         else:
             self.__correct_statement(doc, neural)
-            return False
+            return True
         
-    def __consult_gpt(self, value, context) -> bool:
+    # Consult chat gpt to ask an question
+    def consult_gpt(self, value, context) -> str:
         openai.api_key = "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"
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -150,7 +151,4 @@ class MajuThinking:
         result = '' 
         for choice in response.choices:
             result += choice.message.content
-        print(result)
-        if result.find("True") == -1:
-            return False
-        return True
+        return result

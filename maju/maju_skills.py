@@ -16,6 +16,8 @@ class MajuSkills:
 
     # Vars
     MAJU_THINKING: MajuThinking = MajuThinking()
+    last_context: str = ""
+    FILE_PATH: str = "./utils/memory/memory.txt"
 
     # Initing class
     def __init__(self, command: str) -> None:
@@ -30,8 +32,6 @@ class MajuSkills:
                 CURRENT_HOURS: str = datetime.datetime.now().strftime('%H:%M')
                 print(HOURS_STATEMENTS(CURRENT_HOURS))
                 return True
-            else:
-                return False
         elif self.__check_temp(value):
             RESULT: bool = self.MAJU_THINKING.temperature(self.command)
             if RESULT:
@@ -43,10 +43,21 @@ class MajuSkills:
                 TEMP: str = self.__get_weather(CURRENT_LOCATION, HEADERS)
                 print(TEMP_STATEMENTS(TEMP, CITY))
                 return True
-            else:
-                return False
         else: 
-            return False
+            try:
+                file_content: str = ""
+                with open(self.FILE_PATH, "r", encoding='utf-8') as file:
+                    file_content = file.read()
+                context: str = "Você é uma assistente virtual feminina chamada Maju."
+                if len(file_content) > 0:
+                    context += f"Sua ultima resposta foi: {file_content}"
+                RESPONSE: str = self.MAJU_THINKING.consult_gpt(value, context)
+                print(RESPONSE)
+                with open(self.FILE_PATH, "w", encoding='utf-8') as file:
+                    file.write(RESPONSE)
+                return True
+            except:
+                return False
 
     # Checking if in the statement contains the words related in hours request   
     def __check_hour(self, value: str) -> bool:
